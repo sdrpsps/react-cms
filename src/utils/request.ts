@@ -28,7 +28,7 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     // 根据自定义错误码判断请求是否成功
     const { meta } = response.data;
-    if (meta.status !== 200) {
+    if (meta.status === 200 || meta.status === 201) {
       // 将组件用的数据返回
       return response.data;
     } else {

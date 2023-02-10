@@ -1,8 +1,10 @@
+import Login from "./components/Login";
+
 function App() {
 
   return (
-    <div className="App">
-      <h1 className="text-center">Vite + React</h1>
+    <div className="App h-screen w-screen">
+      <Login />
     </div>
   );
 }
