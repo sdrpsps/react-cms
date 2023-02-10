@@ -33,13 +33,33 @@ service.interceptors.response.use(
       return response.data;
     } else {
       // 处理业务错误。
-      Message.error(meta.message);
-      return Promise.reject(new Error(meta.message));
+      Message.error(meta.msg);
+      return Promise.reject(new Error(meta.msg));
     }
   },
   (error: AxiosError) => {
-    const { meta } = error.response?.data as any;
-    Message.error(JSON.stringify(meta.message));
+    // 处理 HTTP 网络错误
+    let message = '';
+    // HTTP 状态码
+    const status = error.response?.status;
+    switch (status) {
+      case 401:
+        message = 'token 失效，请重新登录';
+        // 这里可以触发退出的 action
+        break;
+      case 403:
+        message = '拒绝访问';
+        break;
+      case 404:
+        message = '请求地址错误';
+        break;
+      case 500:
+        message = '服务器故障';
+        break;
+      default:
+        message = '网络故障';
+    }
+    Message.error(message);
     return Promise.reject(error);
   },
 );

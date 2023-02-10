@@ -1,12 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { login } from '@/api';
 
 function Login() {
+  // 按钮的 loading 状态
+  const [btnLoading, setBtnLoading] = useState(false);
+
+  // 点击登录按钮触发登录
   const onFinish = useCallback(async (values: any) => {
-    const res = await login(values);
-    console.log('res', res);
+    setBtnLoading(true);
+    try {
+      const res = await login(values);
+      localStorage.setItem('userInfo', JSON.stringify(res.data));
+      message.success('登录成功!')
+    } finally {
+      setBtnLoading(false);
+    }
   }, []);
 
   return (
@@ -14,7 +24,6 @@ function Login() {
       <Form
         name="normal_login"
         className="login-form w-96 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        initialValues={{ username: 'admin' }}
         onFinish={onFinish}
       >
         <Form.Item name="username" rules={[{ required: true, message: '请填写用户名!' }]}>
@@ -25,7 +34,7 @@ function Login() {
         </Form.Item>
 
         <Form.Item className="text-center">
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button" loading={btnLoading}>
             登录
           </Button>
         </Form.Item>
