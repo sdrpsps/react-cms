@@ -10,6 +10,8 @@
 
 - axios
 
+- Tailwind CSS 原子化
+
 - ESLint 规范代码
 
 - Prettier 格式化代码
