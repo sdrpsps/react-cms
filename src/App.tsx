@@ -1,11 +1,10 @@
-import Login from "./components/Login";
+import { useRoutes } from 'react-router-dom';
+import Login from './components/Login';
+import route from './routes';
 
 function App() {
-
   return (
-    <div className="App h-screen w-screen">
-      <Login />
-    </div>
+    useRoutes(route)
   );
 }
 

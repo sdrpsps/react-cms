@@ -1,19 +1,24 @@
-import { useState, useEffect, useCallback } from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, message } from 'antd';
 import { login } from '@/api';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input, message } from 'antd';
+import { useCallback, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Login() {
   // 按钮的 loading 状态
   const [btnLoading, setBtnLoading] = useState(false);
-
+  // 路由跳转
+  const navigate = useNavigate();
+  // 获取登录前的路由
+  const location = useLocation();
   // 点击登录按钮触发登录
   const onFinish = useCallback(async (values: any) => {
     setBtnLoading(true);
     try {
       const res = await login(values);
       localStorage.setItem('userInfo', JSON.stringify(res.data));
-      message.success('登录成功!')
+      message.success('登录成功!');
+      navigate(location.state?.preURL || '/', { replace: true });
     } finally {
       setBtnLoading(false);
     }
