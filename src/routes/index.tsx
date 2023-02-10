@@ -8,6 +8,7 @@ import NotFound from '@/components/NotFound';
 import { lazy, ReactNode, Suspense } from 'react';
 const LoginPage = lazy(() => import('@/components/Login'));
 const Dashboard = lazy(() => import('@/components/Dashboard'));
+const User = lazy(() => import('@/components/User'));
 // 自定义懒加载
 const lazyLoad = (children: ReactNode) => {
   return <Suspense fallback={<Spin />}>{children}</Suspense>;
@@ -21,6 +22,7 @@ const route: RouteObject[] = [
         <Dashboard />
       </NeedAuth>
     ),
+    children: [{ path: 'user', element: lazyLoad(<User />) }],
   },
   {
     path: '/login',

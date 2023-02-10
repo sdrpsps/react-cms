@@ -2,7 +2,7 @@ import { Breadcrumb } from 'antd';
 
 function CustBreadcrumb() {
   return (
-    <Breadcrumb style={{ margin: '16px 0' }}>
+    <Breadcrumb className='ml-8 h-16 flex items-center'>
       <Breadcrumb.Item>User</Breadcrumb.Item>
       <Breadcrumb.Item>Bill</Breadcrumb.Item>
     </Breadcrumb>
