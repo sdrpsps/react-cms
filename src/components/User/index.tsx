@@ -1,5 +1,9 @@
+import UserTable from "./components/UserTable";
+
 function User() {
-  return <div>用户列表</div>;
+  return <div>
+    <UserTable />
+  </div>;
 }
 
 export default User;
