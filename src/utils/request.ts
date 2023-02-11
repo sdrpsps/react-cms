@@ -1,6 +1,6 @@
+import { message as Message, Modal } from 'antd';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import { message as Message } from 'antd';
-import type { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // 创建 axios 实例
 const service: AxiosInstance = axios.create({
@@ -31,6 +31,15 @@ service.interceptors.response.use(
     if (meta.status === 200 || meta.status === 201) {
       // 将组件用的数据返回
       return response.data;
+    } else if (meta.status === 400) {
+      Modal.warning({
+        title: '登录过期',
+        content: '请重新登录...',
+        onOk: () => {
+          localStorage.removeItem('userInfo'); // 清除 localStorage
+          location.reload(); // 强制刷新页面
+        },
+      });
     } else {
       // 处理业务错误。
       Message.error(meta.msg);

@@ -1,11 +1,11 @@
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { getUserList } from '@/api';
-import React, { useCallback, useEffect, useState } from 'react';
 import { User } from '@/api/user/types';
+import type { PaginationProps } from 'antd';
 import { Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
-import type { PaginationProps } from 'antd';
 
-const UserTable: React.FC = () => {
+function UserTable(_props: unknown, ref: any) {
   // #region 查询参数
   const [query, setQuery] = useState('');
   const [pagenum, setPagenum] = useState(1);
@@ -53,6 +53,11 @@ const UserTable: React.FC = () => {
     getUserListHandler();
   }, [query, pagenum, pagesize]);
 
+  // 暴露组件方法到父组件
+  useImperativeHandle(ref, () => ({
+    setQuery,
+  }));
+
   return (
     <Table
       dataSource={userList}
@@ -89,6 +94,6 @@ const UserTable: React.FC = () => {
       />
     </Table>
   );
-};
+}
 
-export default UserTable;
+export default forwardRef(UserTable);
