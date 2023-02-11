@@ -1,7 +1,7 @@
 import { DesktopOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function CustSider() {
@@ -33,17 +33,25 @@ function CustSider() {
     ]),
   ];
 
+  // 当前侧边栏高亮的导航
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(['user']);
   // 路由跳转实例
   const naviagte = useNavigate();
   // 点击菜单跳转
   const onClick: MenuProps['onClick'] = (e) => {
+    setSelectedKeys(e.keyPath);
     naviagte(e.keyPath.join('/'));
   };
+
+  useEffect(() => {
+    // 设置侧边栏导航高亮
+    setSelectedKeys(location.pathname.split('/').splice(1));
+  }, []);
 
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
       <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={onClick} />
+      <Menu theme="dark" selectedKeys={selectedKeys} mode="inline" items={items} onClick={onClick} />
     </Sider>
   );
 }
