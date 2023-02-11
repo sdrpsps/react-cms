@@ -40,7 +40,7 @@ function CustSider() {
   // 点击菜单跳转
   const onClick: MenuProps['onClick'] = (e) => {
     setSelectedKeys(e.keyPath);
-    naviagte(e.keyPath.join('/'));
+    naviagte(e.keyPath.reverse().join('/'));
   };
 
   useEffect(() => {
