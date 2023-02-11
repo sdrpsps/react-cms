@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { DesktopOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CustSider() {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,10 +32,18 @@ function CustSider() {
       getItem('商品分类', 'goodsCategory'),
     ]),
   ];
+
+  // 路由跳转实例
+  const naviagte = useNavigate();
+  // 点击菜单跳转
+  const onClick: MenuProps['onClick'] = (e) => {
+    naviagte(e.keyPath.join('/'));
+  };
+
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
       <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={onClick} />
     </Sider>
   );
 }
