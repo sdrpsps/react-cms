@@ -29,8 +29,8 @@ const route: RouteObject[] = [
       { path: 'user', element: lazyLoad(<User />) },
       {
         path: 'permission',
-        element: lazyLoad(<Permission />),
         children: [
+          { index: true, element: lazyLoad(<Permission />) },
           { path: 'roleList', element: lazyLoad(<RoleList />) },
           { path: 'rightList', element: lazyLoad(<RightList />) },
         ],
