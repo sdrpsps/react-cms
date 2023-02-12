@@ -35,3 +35,35 @@ export interface getUserListMeta {
 }
 // #endregion
 // #endregion
+
+// #region 新增用户
+// #region 请求参数
+export interface addUserParams {
+  username: string;
+  password: string;
+  email: string;
+  mobile: string;
+}
+// #endregion
+
+// #region 返回结果
+export interface AddUserResponse {
+  data: AddUserData;
+  meta: AddUserMeta;
+}
+
+export interface AddUserData {
+  create_time: number;
+  email: string;
+  id: number;
+  mobile: string;
+  role_id: number;
+  username: string;
+}
+
+export interface AddUserMeta {
+  msg: string;
+  status: number;
+}
+// #endregion
+// #endregion
