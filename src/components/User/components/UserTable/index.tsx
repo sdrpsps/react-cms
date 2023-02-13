@@ -56,7 +56,9 @@ function UserTable(_props: unknown, ref: any) {
 
   // 暴露组件方法到父组件
   useImperativeHandle(ref, () => ({
+    currentQuery: query,
     setQuery,
+    setPagenum,
     getUserListHandler,
   }));
 
