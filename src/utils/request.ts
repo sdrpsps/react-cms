@@ -31,7 +31,7 @@ service.interceptors.response.use(
     if (meta.status === 200 || meta.status === 201) {
       // 将组件用的数据返回
       return response.data;
-    } else if (meta.status === 400 && meta.message === '无效token') {
+    } else if (meta.status === 400 && meta.msg === '无效token') {
       Modal.warning({
         title: '登录过期',
         content: '请重新登录...',
