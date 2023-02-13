@@ -67,3 +67,22 @@ export interface AddUserMeta {
 }
 // #endregion
 // #endregion
+
+// #region 删除用户
+// #region 请求参数
+export interface delUserParams {
+  id: number;
+}
+// #endregion
+// #region 返回结果
+export interface DelUserResponse {
+  data: null;
+  meta: DelUserMeta;
+}
+
+export interface DelUserMeta {
+  msg: string;
+  status: number;
+}
+// #endregion
+// #endregion

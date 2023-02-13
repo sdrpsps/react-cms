@@ -4,6 +4,7 @@ import { User } from '@/api/user/types';
 import type { PaginationProps } from 'antd';
 import { Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
+import UserDelete from '../UserDelete';
 
 function UserTable(_props: unknown, ref: any) {
   // #region 查询参数
@@ -56,7 +57,7 @@ function UserTable(_props: unknown, ref: any) {
   // 暴露组件方法到父组件
   useImperativeHandle(ref, () => ({
     setQuery,
-    getUserListHandler
+    getUserListHandler,
   }));
 
   return (
@@ -88,8 +89,7 @@ function UserTable(_props: unknown, ref: any) {
         align="center"
         render={(_: any, record: User) => (
           <Space size="middle">
-            <a>Invite</a>
-            <a>Delete</a>
+            <UserDelete onSuccess={getUserListHandler} userID={record.id} />
           </Space>
         )}
       />

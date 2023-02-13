@@ -1,4 +1,4 @@
-import { addUser } from '@/api/user';
+import { addUser } from '@/api';
 import { UserAddOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal } from 'antd';
 import { useCallback, useState } from 'react';
