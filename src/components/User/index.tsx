@@ -43,7 +43,7 @@ function User() {
   }, []);
 
   // 新增用户成功后刷新表格
-  const onUpdate = useCallback(() => {
+  const onAdd = useCallback(() => {
     UserTableRef.current?.getUserListHandler();
   }, []);
 
@@ -52,7 +52,7 @@ function User() {
       <header className="flex mb-4">
         <UserSearch ref={UserSearchRef} onSearch={onSearch} />
         <UserRefresh onRefresh={onRefresh} />
-        <UserAddModal onUpdate={onUpdate} />
+        <UserAddModal onAdd={onAdd} />
       </header>
       <section>
         <UserTable ref={UserTableRef} />

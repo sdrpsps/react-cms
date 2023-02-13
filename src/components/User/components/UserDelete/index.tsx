@@ -1,4 +1,5 @@
 import { delUser } from '@/api';
+import { DeleteOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm } from 'antd';
 import { useCallback, useState } from 'react';
 
@@ -35,7 +36,7 @@ function UserDelete(props: propsType) {
       okButtonProps={{ loading: confirmLoading }}
       onCancel={() => setOpen(false)}
     >
-      <Button type="primary" danger onClick={() => setOpen(true)}>
+      <Button type="primary" danger onClick={() => setOpen(true)} icon={<DeleteOutlined />}>
         删除
       </Button>
     </Popconfirm>

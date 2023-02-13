@@ -47,12 +47,12 @@ export interface addUserParams {
 // #endregion
 
 // #region 返回结果
-export interface AddUserResponse {
-  data: AddUserData;
-  meta: AddUserMeta;
+export interface addUserResponse {
+  data: addUserData;
+  meta: addUserMeta;
 }
 
-export interface AddUserData {
+export interface addUserData {
   create_time: number;
   email: string;
   id: number;
@@ -61,7 +61,7 @@ export interface AddUserData {
   username: string;
 }
 
-export interface AddUserMeta {
+export interface addUserMeta {
   msg: string;
   status: number;
 }
@@ -75,12 +75,43 @@ export interface delUserParams {
 }
 // #endregion
 // #region 返回结果
-export interface DelUserResponse {
+export interface delUserResponse {
   data: null;
-  meta: DelUserMeta;
+  meta: delUserMeta;
 }
 
-export interface DelUserMeta {
+export interface delUserMeta {
+  msg: string;
+  status: number;
+}
+// #endregion
+// #endregion
+
+// #region 修改用户
+// #region 请求参数
+export interface updateUserParams {
+  id: string;
+  username: string;
+  email: string;
+  mobile: string;
+}
+// #endregion
+
+// #region 返回结果
+export interface updateUserResponse {
+  data: updateUserData;
+  meta: updateUserMeta;
+}
+
+export interface updateUserData {
+  email: string;
+  id: number;
+  mobile: string;
+  role_id: number;
+  username: string;
+}
+
+export interface updateUserMeta {
   msg: string;
   status: number;
 }

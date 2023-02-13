@@ -1,5 +1,14 @@
 import { http } from '@/utils/request';
-import { addUserParams, AddUserResponse, delUserParams, DelUserResponse, getUserListParams, getUserListResponse } from './types';
+import {
+  addUserParams,
+  addUserResponse,
+  delUserParams,
+  delUserResponse,
+  getUserListParams,
+  getUserListResponse,
+  updateUserParams,
+  updateUserResponse
+} from './types';
 
 // 获取用户列表
 export function getUserList(params: getUserListParams) {
@@ -8,10 +17,15 @@ export function getUserList(params: getUserListParams) {
 
 // 新增用户
 export function addUser(params: addUserParams) {
-  return http.post<AddUserResponse>('users', params);
+  return http.post<addUserResponse>('users', params);
 }
 
 // 删除用户
 export function delUser(params: delUserParams) {
-  return http.delete<DelUserResponse>(`users/${params.id}`);
+  return http.delete<delUserResponse>(`users/${params.id}`);
+}
+
+// 修改用户
+export function updateUser(params: updateUserParams) {
+  return http.put<updateUserResponse>(`users/${params.id}`, params);
 }

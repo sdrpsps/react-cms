@@ -5,6 +5,7 @@ import type { PaginationProps } from 'antd';
 import { Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import UserDelete from '../UserDelete';
+import UserUpdateModal from '../UserUpdateModal';
 
 function UserTable(_props: unknown, ref: any) {
   // #region 查询参数
@@ -91,6 +92,7 @@ function UserTable(_props: unknown, ref: any) {
         align="center"
         render={(_: any, record: User) => (
           <Space size="middle">
+            <UserUpdateModal onUpdate={getUserListHandler} userInfo={record} />
             <UserDelete onSuccess={getUserListHandler} userID={record.id} />
           </Space>
         )}
