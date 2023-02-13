@@ -9,17 +9,15 @@ interface propsType {
 }
 
 function UserDelete(props: propsType) {
-  const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   // 点击确认
-  const handleOk = useCallback(async () => {
+  const onConfirm = useCallback(async () => {
     setConfirmLoading(true);
     try {
       await delUser({ id: props.userID });
       message.success('删除成功');
       props.onSuccess();
-      setOpen(false);
     } catch (error) {
       console.log('error', error);
     } finally {
@@ -31,12 +29,10 @@ function UserDelete(props: propsType) {
     <Popconfirm
       title="删除用户"
       description="请确认是否删除用户，该操作不能撤回！"
-      open={open}
-      onConfirm={handleOk}
+      onConfirm={onConfirm}
       okButtonProps={{ loading: confirmLoading }}
-      onCancel={() => setOpen(false)}
     >
-      <Button type="primary" danger onClick={() => setOpen(true)} icon={<DeleteOutlined />}>
+      <Button type="primary" danger icon={<DeleteOutlined />}>
         删除
       </Button>
     </Popconfirm>
