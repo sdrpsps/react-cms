@@ -6,6 +6,7 @@ import { Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import UserDelete from '../UserDelete';
 import UserUpdateModal from '../UserUpdateModal';
+import UserStateSwitch from '../UserStateSwtich';
 
 function UserTable(_props: unknown, ref: any) {
   // #region 查询参数
@@ -86,6 +87,16 @@ function UserTable(_props: unknown, ref: any) {
       <Column title="邮箱" dataIndex="email" key="email" align="center" />
       <Column title="手机号" dataIndex="mobile" key="mobile" align="center" />
       <Column title="角色" dataIndex="role_name" key="role_name" align="center" />
+      <Column
+        title="用户状态"
+        key="id"
+        align="center"
+        render={(_: any, record: User) => (
+          <Space size="middle">
+            <UserStateSwitch userID={record.id} checked={record.mg_state} onSuccess={getUserListHandler} />
+          </Space>
+        )}
+      />
       <Column
         title="操作"
         key="id"

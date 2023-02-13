@@ -117,3 +117,33 @@ export interface updateUserMeta {
 }
 // #endregion
 // #endregion
+
+// #region 修改用户状态
+// #region 请求参数
+export interface updateUserStateParams {
+  id: number;
+  type: boolean;
+}
+// #endregion
+
+// #region 返回结果
+export interface updateUserStateResponse {
+  data: updateUserStateData;
+  meta: updateUserStateMeta;
+}
+
+export interface updateUserStateMeta {
+  msg: string;
+  status: number;
+}
+
+export interface updateUserStateData {
+  id: number;
+  rid: number;
+  username: string;
+  mobile: string;
+  email: string;
+  mg_state: number;
+}
+// #endregion
+// #endregion

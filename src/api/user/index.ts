@@ -7,7 +7,9 @@ import {
   getUserListParams,
   getUserListResponse,
   updateUserParams,
-  updateUserResponse
+  updateUserResponse,
+  updateUserStateParams,
+  updateUserStateResponse,
 } from './types';
 
 // 获取用户列表
@@ -28,4 +30,9 @@ export function delUser(params: delUserParams) {
 // 修改用户
 export function updateUser(params: updateUserParams) {
   return http.put<updateUserResponse>(`users/${params.id}`, params);
+}
+
+// 修改用户状态
+export function updateUserState(params: updateUserStateParams) {
+  return http.put<updateUserStateResponse>(`users/${params.id}/state/${params.type}`);
 }
