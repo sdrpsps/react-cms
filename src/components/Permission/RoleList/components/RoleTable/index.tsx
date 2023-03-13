@@ -5,6 +5,9 @@ import { message, Space, Table } from 'antd';
 import { roleListDatum } from '@/api/permission/type';
 import { getRolesList } from '@/api';
 import { omit } from 'lodash';
+import RoleDelete from '../RoleDelete';
+import RoleInfoUpdate from '../RoleInfoUpdate';
+import RolePermissionUpdate from '../RolePermissionUpdate';
 
 function RoleTable() {
   // 获取列表时的加载状态
@@ -33,7 +36,19 @@ function RoleTable() {
       <Column title="ID" dataIndex="id" key="id" align="center" />
       <Column title="角色名称" dataIndex="roleName" key="roleName" align="center" />
       <Column title="角色描述" dataIndex="roleDesc" key="roleDesc" align="center" />
-      <Column title="操作" key="id" align="center" render={(_: any, record: User) => <Space size="middle"></Space>} />
+      <Column
+        title="操作"
+        key="id"
+        align="center"
+        width={400}
+        render={(_: any, record: User) => (
+          <Space size="middle">
+            <RoleInfoUpdate />
+            <RolePermissionUpdate />
+            <RoleDelete id={record.id} onSuccess={getRoleListHandler} />
+          </Space>
+        )}
+      />
     </Table>
   );
 }

@@ -1,3 +1,4 @@
+// region 角色列表
 export interface getRoleListResponse {
   data: roleListDatum[];
   meta: roleListMeta;
@@ -21,3 +22,21 @@ export interface roleListMeta {
   msg: string;
   status: number;
 }
+
+// endregion
+// region 删除角色
+export interface deleteRoleResponse {
+  data: null;
+  meta: deleteRoleMeta;
+}
+
+export interface deleteRoleMeta {
+  msg: string;
+  status: number;
+}
+
+export interface deleteRoleParams {
+  id: number;
+}
+
+// endregion
