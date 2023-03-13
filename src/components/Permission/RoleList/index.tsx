@@ -1,5 +1,7 @@
+import RoleTable from '@/components/Permission/RoleList/components/RoleTable';
+
 function RoleList() {
-  return <div>角色列表</div>;
+  return <RoleTable />;
 }
 
 export default RoleList;
