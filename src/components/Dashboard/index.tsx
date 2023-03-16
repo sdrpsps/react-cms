@@ -4,8 +4,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import CustHeader from './components/Header';
 import CustSider from './components/Sider';
+import useAutoLogout from '@/hooks/useAutoLogout';
 
 const Dashboard: React.FC = () => {
+  useAutoLogout();
   return (
     <Layout style={{ minHeight: '100vh' }}>
       {/* 拆分侧边栏 */}
